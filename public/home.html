@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+<head>
+  <title>AlgoDex - My Algorithms</title>
+  <meta charset="utf-8">
+  <link href="style.css" rel="stylesheet" type="text/css">
+  <script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
+  <script>
+        var config = {
+          apiKey: "AIzaSyAGWG2yAgWoyAMqo2Wj75J3n7299-ku07o",
+          authDomain: "cse134b-project-d4f0e.firebaseapp.com",
+          databaseURL: "https://cse134b-project-d4f0e.firebaseio.com",
+          storageBucket: "cse134b-project-d4f0e.appspot.com",
+          messagingSenderId: "759385208306"
+        };
+
+        firebase.initializeApp( config );
+        var db = firebase.database();
+  </script>
+</head>
+
+<body class="outer_body">
+  <nav class="nav_bar">
+    <a class="link_button link_active" href="./home.html">My Algos</a> <a class="link_button" href="./search.html">Search</a> <a class="link_button" href="./team.html">About</a>
+
+    <div class="logo_hover">
+      <img alt="AlgoDex Logo" class="top_logo" src="images/logo.png">
+
+      <div class="logo_dropdown">
+        <button id="home_btn" type="button">Home</button> <button id="signout_btn" type="button">Signout</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Contains the list of algorithms -->
+
+  <div class="frame_element left_frame align_center" id="user_algos" style="margin-left: 2em">
+    <h2>My Algos</h2>
+    <ul class="frame_element" id="algo_list">
+    <!-- Algorithm buttons are populated here... -->
+      <button class="algo_button" id="add_btn" type="button">Add New Algorithm</button>
+    </ul>
+  </div>
+
+  <iframe class="outside_content no_border" id="i_frame" name="outside stuff" src="./view.html"></iframe> 
+
+  <script>
+
+    var home = document.getElementById( "home_btn" );
+    var signout = document.getElementById( "signout_btn" );
+
+    var usersAlgoIDs = [];
+
+    function algoTemplate(name, id) {
+      return '<h3>' + name + '</h3>' +
+        '<button class="algo_button" id="' + 'edit_' + id + 
+          '" onClick="editAlgorithm(this.id)" type="button">Edit</button>' +
+        '<button class="algo_button" id="' + 'view_' + id + 
+          '" onClick="viewAlgorithm(this.id)" type="button">View</button>' +
+        '<button class="algo_button" id="' + 'dele_' + id + 
+          '" onClick="deleteAlgorithm(this.id)" type="button">Delete</button>';
+    }
+
+    signout.addEventListener( "click", e => {
+      firebase.auth().signOut().then( function() {
+          window.alert( "Signed Out" );
+          window.open( "./index.html", "_self" );
+        }, function( error ) {
+          window.alert( "Sign Out Error" + error );
+        } );
+    } );
+
+    firebase.auth().onAuthStateChanged( function( user ) {
+
+        if ( user ) {
+
+          var algos = document.getElementById( "algo_list" );
+
+          var updateList = function() {
+
+            var ref = firebase.database().ref( "code/" + user.uid + "/" );
+
+            ref.orderByChild( "name" ).on( "child_added", function( data ) {
+                var li = document.createElement( 'li' )
+                li.id = data.key;
+                li.innerHTML = algoTemplate(data.val().name, data.key);
+                document.getElementById( "algo_list" ).appendChild( li );
+                usersAlgoIDs.push(data.key);
+              } );
+          }
+          algos.addEventListener( "load", updateList() );
+
+          document.getElementById("add_btn").addEventListener( "click", e => {
+            sessionStorage.setItem("buttonPressed", "new");
+            window.open( "./edit.html", "_self" );
+          });
+
+          document.editAlgorithm = function(buttonID){
+            sessionStorage.setItem("buttonPressed", buttonID);
+            window.open("./edit.html", "_self");
+          }
+
+          document.viewAlgorithm = function(buttonID){
+
+          }
+
+          document.deleteAlgorithm = function(buttonID){
+            var ref = firebase.database().ref( "code/" + user.uid );
+            buttonID = buttonID.substring(5);
+            var delPromise = ref.child(buttonID).remove();
+
+            delPromise.then( e => {document.getElementById(buttonID.toString()).remove();} );}
+
+        }
+
+    } );
+  </script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AlgoDex - Login</title>
+  <meta charset="utf-8">
+
+  <style>
+    input {
+      font-size: 16pt;
+      width: 260px;
+    }
+
+    div {
+      background-color: #71bcd2;
+      border-radius: 40px;
+      height: 600px;
+      width: 320px;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 75px;
+      text-align: center;
+      padding-top: 15px;
+    }
+
+    body {
+      background-color: #0c3a50;
+      font-family: monospace;
+    }
+
+    #sign_up_btn {
+      background-color: #0c3a50;
+      padding: 8px 32px;
+      color: #fdb309;
+      font-size: 24px;
+      border: none;
+    }
+
+    noscript { text-align: center; color: red; font-size: 16pt;}
+  </style>
+  <script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyAGWG2yAgWoyAMqo2Wj75J3n7299-ku07o",
+      authDomain: "cse134b-project-d4f0e.firebaseapp.com",
+      storageBucket: "cse134b-project-d4f0e.appspot.com",
+      messagingSenderId: "759385208306"
+    };
+    firebase.initializeApp(config);
+  </script>
+</head>
+<body>
+  <noscript>
+    <p>
+      JavaScript is not enabled. Please enable JavaScript to continue.
+    </p>
+  </noscript>
+  <div>
+    <img src="images/logo.png" alt="AlgoDex Logo" height="200">
+    <h4>Create New Account</h4>
+    <br>
+		<input id="email1" type="email" placeholder="Email">
+    <br><br>
+    <input id="email2" type="email" placeholder="Re-enter Email">
+		<br><br>
+    <input id="pwrd1" type="password" placeholder="Password">
+    <br><br>
+    <input id="pwrd2" type="password" placeholder="Re-enter Password">
+		<br><br><br>
+    <button id = "sign_up_btn" type="button">Sign Up</button>
+    <br><br>
+    <a href="./index.html">Go Back To Sign In</a>
+    <br>
+  </div>
+
+  <script>
+    var email1 = document.getElementById("email1");
+    var email2 = document.getElementById("email2");
+    var pwrd1 = document.getElementById("pwrd1");
+    var pwrd2 = document.getElementById("pwrd2");
+
+    document.getElementById("sign_up_btn").addEventListener("click", e => {
+      this.disabled = true;
+      if (email1.value !== email2.value) {
+        window.alert("Emails do not match.");
+      }
+      else if (pwrd1.value !== pwrd2.value) {
+        window.alert("Passwords do not match.");
+      }
+      else {
+        firebase.auth()
+        .createUserWithEmailAndPassword(email1.value, pwrd1.value)
+        .catch(function(e) {
+          window.alert(e.message);
+        })
+        .then(e => {
+          window.alert("Account successfully created");
+          window.open("./index.html", "_self");
+        });
+      }
+
+      this.disabled = false;
+    });
+  </script>
+</body>
+</html>
+

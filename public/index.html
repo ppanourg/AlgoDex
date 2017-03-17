@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AlgoDex - Login</title>
+  <meta charset="utf-8">
+
+  <style id="login_style">
+    input {
+      font-size: 16pt;
+      width: 260px;
+    }
+
+    #logo {
+      width: 200px;
+      height: 200px;
+      background: url(./images/login_images.png) 0 0;
+    }
+
+    #google_icon {
+      float: left;
+      width: 48px;
+      height: 30px;
+      background: url(./images/login_images.png) -200px -8px;
+      margin: 0;
+      padding: 0;
+      padding-right: 10px;
+    }
+
+    #login_bubble {
+      background-color: #71bcd2;
+      border-radius: 40px;
+      height: 620px;
+      width: 320px;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 62px;
+      text-align: center;
+      padding-top: 15px;
+    }
+
+    .login_btns {
+      background-color: #0c3a50;
+      height: 48px;
+      margin-bottom: 10px;
+      color: #fdb309;
+      font-size: 24px;
+      border: none;
+    }
+
+    body {
+      background-color: #0c3a50;
+      font-family: monospace;
+      font-size: 15px;
+    }
+
+    body a:link { color: #fdb309; text-decoration: none;}
+    body a:visited { color: purple; }
+    body header p { color:white; }
+    noscript { text-align: center; color: red; font-size: 16pt;}
+
+  </style>
+
+  <script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
+  <script>
+    var config = {
+      apiKey: "AIzaSyAGWG2yAgWoyAMqo2Wj75J3n7299-ku07o",
+      authDomain: "cse134b-project-d4f0e.firebaseapp.com",
+      databaseURL: "https://cse134b-project-d4f0e.firebaseio.com",
+      storageBucket: "cse134b-project-d4f0e.appspot.com",
+      messagingSenderId: "759385208306"
+    };
+
+    firebase.initializeApp(config);
+
+    var storage = firebase.storage();
+    var db = firebase.database();
+  </script>
+
+</head>
+<body>
+  <noscript>
+    <p>
+      JavaScript is not enabled. Please enable JavaScript to continue.
+    </p>
+  </noscript>
+  <div id="login_bubble">
+    <img id="logo" src="images/blank.png" alt="AlgoDex Logo" width="200" height="200">
+
+    <p style="font-size: 16pt">Welcome to AlgoDex!</p>
+    <input id="usr" type="text" placeholder="Username">
+    <br><br>
+    <input id="pwrd" type="password" placeholder="Password">
+		<br><br>
+    <button id="login" class="login_btns" type="button">Sign In</button>
+    <br>
+    <p><strong>-- OR --</strong></p>
+    <button id="google_login" class="login_btns" type="button">
+    <img id="google_icon" src="./images/blank.png" alt="Login with Google">
+    Sign In with Google
+    </button>
+    <br>
+
+    <a href="forgot.html">Forgot Password?</a>
+
+    <h4>Not a member? <a href="signup.html">Sign Up</a></h4>
+  </div>
+  <script id="login_script">
+    var provider = new firebase.auth.GoogleAuthProvider();
+
+    document.getElementById("login").addEventListener("click", e => {
+      const promise = firebase.auth().signInWithEmailAndPassword(document.getElementById("usr").value,
+                                                      document.getElementById("pwrd").value);
+      promise.catch(function(error) {
+        alert("The username and/or password entered does not match our records");
+      });
+      promise.then(e => {
+        var sc = document.createElement("script");
+        sc.setAttribute("src", "./lg_trans.js");
+        sc.setAttribute("id", "transition");
+        document.head.appendChild(sc);
+        sc = null;
+      });
+    });
+
+    document.getElementById("google_login").addEventListener("click", e => {
+        this.disabled = true;
+        const promise = firebase.auth().signInWithPopup(provider).then(function(result) {
+          var sc = document.createElement("script");
+          sc.setAttribute("src", "./lg_trans.js");
+          sc.setAttribute("id", "transition");
+          document.head.appendChild(sc);
+          sc = null;
+        }).catch(function(error) { alert(error.message); });
+        this.disabled = false;
+    });
+
+    firebase.auth().onAuthStateChanged( function( user ) {
+        if (user && document.getElementById("transition") == null) {
+            var sc = document.createElement("script");
+          sc.setAttribute("src", "./lg_trans.js");
+          sc.setAttribute("id", "transition");
+          document.head.appendChild(sc);
+          sc = null;
+        }
+    });
+  </script>
+</body>
+</html>
+

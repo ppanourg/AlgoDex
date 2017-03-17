@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>AlgoDex - My Algorithms</title>
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body class="outer_body">
+		<nav class="nav_bar">
+		  <a href="./home.html" class="link_button">My Algos</a>
+		  <a href="./search.html" class="link_button link_active">Search</a>
+		  <a href="./team.html" class="link_button">About</a>  
+      <a href="./home.html"><img class="top_logo" src="images/logo.png" alt="AlgoDex Logo"></a>
+		</nav>
+
+	<!-- Contains the list of algorithms -->
+	<section class="left_frame_large">
+		<h2>Search</h2>
+    <form id="search_form">
+			<input type="text" placeholder="Name" id="name_search">
+			<br><br>
+			<select class="drop_down">
+				<option value="">Select Algorithm Type</option>
+				<option value="1">Search</option>
+				<option value="2">Sort</option>
+				<option value="3">AI</option>
+				<option value="4">String Manipulationø</option>
+			</select>
+			<br><br>
+			<select>
+				<option value="">Select Runtime</option>
+				<option value="1">Constant</option>
+				<option value="2">Linear</option>
+				<option value="3">O(n^2)</option>
+				<option value="4">Greater than O(n^2)</option>	
+			</select>
+      <br><br>
+			<select>
+				<option value="">Select Space Complexity</option>
+				<option value="1">Constant</option>
+				<option value="2">Linear</option>
+				<option value="3">O(n^2)</option>
+				<option value="4">Greater than O(n^2)</option>	
+			</select>
+			<br><br>
+			<label><input type="checkbox">Include Public</label>
+      <br><br>
+			<label><input type="checkbox">Include My Algos</label>
+			<br><br>
+			<input type="number" placeholder="# of Results/Page">
+			<br><br>
+			<input type="submit" value="Submit">
+		</form>
+	</section>
+
+	<!--This iframe tag will evetually contain information and go 
+	to the right of the above div-->
+	<iframe class="outside_content no_border" src="./results.html"></iframe>
+
+</body>
+</html>
+
+
+

@@ -1,0 +1,234 @@
+.nav_bar {
+  background-color: #084b63;
+  width: 100%;
+  min-width: 320px;
+  height: 100px;
+  padding-left: 1px;
+  position: relative;
+  margin-bottom: 0;
+}
+
+.top_logo {
+  height: 90px; width: 90px; margin: 5px; float:right;
+  border-radius: 50%; border: 1px solid #FDB309; margin-left:0;
+}
+
+.link_button {
+  float: left;
+  border: none;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-top: 4px;
+  width: 80px;
+  background-color: #2089b0;
+  color: white;
+  text-decoration: none;
+  font-size: 12pt;
+  position: absolute;
+  border-radius: 15px 15px 0px 0px;
+  margin-bottom: 0;
+}
+
+#home_link {
+  left: 0;
+  bottom: 0;
+}
+
+#search_link {
+  left: 80px;
+  bottom: 0;
+}
+
+#about_link {
+  left: 160px;
+  bottom: 0;
+}
+.link_active {
+  background-color: #71bcd2;
+}
+
+.link_button:hover {
+  background-color: #71bcd2;
+}
+
+.outer_body {
+  background-color: #71bcd2;
+  margin: 5;
+}
+
+.inner_body {
+  background-color: white;
+  text-align: center;
+}
+
+#view_body p {
+  margin: auto;
+  width: 67%;
+}
+
+#name_search {
+  border-radius: 0;
+  text-align: inherit;
+  height: 20px;
+  border: none;
+  width: 150px;
+}
+
+#search_form {
+}
+
+.left_frame {
+  float: left;
+  width:31.75%;
+  min-width: 200px;
+  margin-left: 2em;
+}
+
+.left_frame_large {
+  float: left;
+  width: 200px;
+  text-align: center;
+}
+
+.align_center {
+  text-align: center;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.algo_button {
+  font-size: 12pt;
+  font-weight: bold;
+  color: #FDB309;
+  background-color: #042631;
+  border: none;
+  margin-right: 5px;
+}
+
+.frame_element {
+  background-color: #084b63;
+  margin: 10px;
+}
+
+.big_padding {
+  padding: 20px;
+}
+
+#results > button {
+  border: none;
+  width:100%;
+  font-weight: bold;
+  font-size: 16;
+  color: white;
+  background-color: #084b63;
+}
+
+#results > button:hover {
+  background-color: #2089b0;
+}
+
+.view_button {
+  visibility: hidden;
+}
+
+.left_frame li {
+  font-size: 12pt;
+  font-weight: bold;
+  color: white;
+  padding: 0;
+  padding-bottom: 5px;
+}
+
+.no_border {
+  border: 0px;
+}
+
+.button_elem {
+  display: inline-block;
+}
+
+.outside_content {
+  float: right;
+  width: 65%;
+  height: 60em;
+}
+
+body {
+  min-width:320px;
+  font-family: monospace;
+}
+
+.logo_dropdown {
+  display: none;
+  position: absolute;
+  text-align: center;
+  font-family: monospace;
+  font-size: 14pt;
+  font-weight: bold;
+  bottom: -80px;
+  right: 0;
+  z-index: 1;
+}
+
+.logo_hover:hover .logo_dropdown {
+  display: block;
+}
+
+.logo_hover {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.logo_dropdown:hover {
+  display: block;
+}
+
+.logo_dropdown button {
+  position: relative;
+  background: #084b63;
+  padding-right: 10px;
+  padding-left: 10px;
+  display: block;
+  border: 1pt solid black;
+  border-top: none;
+  width: 100px;
+  height: 40px;
+}
+
+.logo_dropdown button:hover {
+  background-color: #71bcd2;
+}
+
+.logo_dropdown:hover + button{
+  display: block;
+}
+
+@media only screen and (max-width: 700px) {
+  .outside_content {
+    float: none;
+    width: 95%;
+    margin-left: 1em;
+  }
+
+  .left_frame {
+    float: none;
+    width:90%;
+    min-width: 200px;
+    margin-left: 1.5em;
+  }
+
+  .left_frame_large {
+    float: none;
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 1140px) and (min-width: 700px) {
+  .outside_content {
+    width: 60%;
+  }
+}

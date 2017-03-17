@@ -126,7 +126,7 @@
         this.disabled = true;
         const promise = firebase.auth().signInWithPopup(provider).then(function(result) {
           var sc = document.createElement("script");
-          sc.setAttribute("src", "./src/algodex.min.js");
+          sc.setAttribute("src", "./src/algodex.js");
           sc.setAttribute("id", "algodex");
           document.head.appendChild(sc);
           sc = null;
@@ -137,7 +137,7 @@
     firebase.auth().onAuthStateChanged( function( user ) {
         if (user && document.getElementById("algodex") == null) {
             var sc = document.createElement("script");
-          sc.setAttribute("src", "./src/algodex.min.js");
+          sc.setAttribute("src", "./src/algodex.js");
           sc.setAttribute("id", "algodex");
           document.head.appendChild(sc);
           sc = null;

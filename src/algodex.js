@@ -131,7 +131,9 @@ function home_load() {
           '<h2 id="type">Algorithm Type - ' + type + '</h2><br>' +
 
           '<h2>Overview / Code</h2>' +
-            '<p id="overview">' + code + '</p><br>' +
+            '<div style="text-align:left; margin-left:30%;">' +
+              '<code id="overview">' + code.replace(/\n/g, '<br>').replace(/ /g, '&nbsp;') + '</code><br>' +
+            '</div>' +
 
           '<h2>Runtime Analysis</h2>' +
             '<p id="runtime">' + rt + '</p><br>' +

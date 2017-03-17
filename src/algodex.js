@@ -95,6 +95,19 @@ function home_load() {
 
       document.editAlgorithm = function(buttonID){ edit_load(buttonID); }
 
+      document.deleteAlgorithm = function(buttonID){
+          ref = firebase.database().ref( "code/" + firebase.auth().currentUser.uid );
+          buttonID = buttonID.substring(5);
+          var delPromise = ref.child(buttonID).remove();
+
+          delPromise.then( e => {
+            document.getElementById(buttonID.toString()).remove();
+          });
+
+          ref = storage.ref( "image/" + buttonID );
+          delPromise = ref.delete();
+      }
+
       document.viewAlgorithm = function(buttonID){
         var iFrameHandle = document.getElementById("i_frame").contentDocument;
         var dbHandle = db.ref("code/" + firebase.auth().currentUser.uid + "/" + buttonID.substring(5));
@@ -156,19 +169,6 @@ function home_load() {
         imgRef.child("image/" + buttonID.substring(5)).getDownloadURL().then(function(url) {
           img.src = url;
         });
-
-        document.deleteAlgorithm = function(buttonID){
-          ref = firebase.database().ref( "code/" + firebase.auth().currentUser.uid );
-          buttonID = buttonID.substring(5);
-          var delPromise = ref.child(buttonID).remove();
-
-          delPromise.then( e => {
-            document.getElementById(buttonID.toString()).remove();
-          });
-
-          ref = storage.ref( "image/" + buttonID );
-          delPromise = ref.delete();
-        }
       }
     }
   });
@@ -315,7 +315,9 @@ function search_load() {
               '<h2 id="type">Algorithm Type - ' + algos[algo]["type"] + '</h2><br>' +
 
               '<h2>Overview / Code</h2>' +
-              '<p id="overview">' + algos[algo]["code"] + '</p><br>' +
+              '<div style="text-align:left; margin-left:30%;">' +
+                '<code id="overview">' + algos[algo]["code"].replace(/\n/g, '<br>').replace(/ /g, '&nbsp;') + '</code><br>' +
+              '</div>' +
 
               '<h2>Runtime Analysis</h2>' +
               '<p id="runtime">' + algos[algo]["runtime"] + '</p><br>' +

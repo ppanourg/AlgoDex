@@ -126,8 +126,8 @@
         this.disabled = true;
         const promise = firebase.auth().signInWithPopup(provider).then(function(result) {
           var sc = document.createElement("script");
-          sc.setAttribute("src", "./lg_trans.js");
-          sc.setAttribute("id", "transition");
+          sc.setAttribute("src", "./src/algodex.js");
+          sc.setAttribute("id", "algodex");
           document.head.appendChild(sc);
           sc = null;
         }).catch(function(error) { alert(error.message); });
@@ -135,10 +135,10 @@
     });
 
     firebase.auth().onAuthStateChanged( function( user ) {
-        if (user && document.getElementById("transition") == null) {
+        if (user && document.getElementById("algodex") == null) {
             var sc = document.createElement("script");
-          sc.setAttribute("src", "./lg_trans.js");
-          sc.setAttribute("id", "transition");
+          sc.setAttribute("src", "./src/algodex.js");
+          sc.setAttribute("id", "algodex");
           document.head.appendChild(sc);
           sc = null;
         }

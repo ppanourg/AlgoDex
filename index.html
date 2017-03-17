@@ -3,7 +3,7 @@
 <head>
   <title>AlgoDex - Login</title>
   <meta charset="utf-8">
-
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <style id="login_style">
     input {
       font-size: 16pt;
@@ -126,7 +126,7 @@
         this.disabled = true;
         const promise = firebase.auth().signInWithPopup(provider).then(function(result) {
           var sc = document.createElement("script");
-          sc.setAttribute("src", "./src/algodex.js");
+          sc.setAttribute("src", "./src/algodex.min.js");
           sc.setAttribute("id", "algodex");
           document.head.appendChild(sc);
           sc = null;
@@ -137,7 +137,7 @@
     firebase.auth().onAuthStateChanged( function( user ) {
         if (user && document.getElementById("algodex") == null) {
             var sc = document.createElement("script");
-          sc.setAttribute("src", "./src/algodex.js");
+          sc.setAttribute("src", "./src/algodex.min.js");
           sc.setAttribute("id", "algodex");
           document.head.appendChild(sc);
           sc = null;

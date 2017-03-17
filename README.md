@@ -11,7 +11,11 @@ Algo-Dex’s main role is to only store portions of code; the algorithms. Theref
 AlgoDex removes the need for a user to search all the source code of an existing
 code base to find an algorithm they are looking for.
 
+Below is a example of how our site looks when being used by a user
 ![App Example](/readme_images/home_screenshot.png)
+
+Here is our login page which shows the capability of regular login and also Google login
+![App Example](/readme_images/login_screenshot.png)
 
 ## Application Overview
 * Frontend: HTML / CSS (Vanilla) / JS (Vanilla)

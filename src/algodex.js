@@ -387,8 +387,7 @@ function about_load() {
            'heading to industry in June. He is a Navy veteran and worked in IT ' +
            'while he was enlisted. In his spare time, he likes to look people ' +
            'in the eyes for far too long to see how they react. He also ' +
-           'likes to ponder the meaning of life while he sleeps! You know he ' +
-           'is in the room when you smell alcohol and despair.</p>' +
+           'likes to ponder the meaning of life while he sleeps!</p>' +
       '</div>' +
       '<hr />' +
       '<div>' +

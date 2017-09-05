@@ -1,4 +1,5 @@
 # AlgoDex
+# Developed by Peter Panourgias && Justin Harris
 # Available at: https://cse134b-project-d4f0e.firebaseapp.com/
 During the process of writing software, there are often times when certain
 portions of written code could become useful in future applications. Furthermore, there
